@@ -23,13 +23,18 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Fail1",
-						"type": "Fail",
+						"name": "WebHook1",
+						"type": "WebHook",
 						"dependsOn": [],
 						"userProperties": [],
 						"typeProperties": {
-							"message": "this pipeline failed",
-							"errorCode": "6"
+							"url": "https://webhook.site/273136c5-91a5-4f6f-b046-d255dbca5f39",
+							"method": "POST",
+							"headers": {},
+							"body": {
+								"x": 1
+							},
+							"timeout": "00:10:00"
 						}
 					}
 				],
