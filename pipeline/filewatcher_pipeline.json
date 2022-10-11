@@ -10,7 +10,7 @@
 				"typeProperties": {
 					"url": "https://webhook.site/273136c5-91a5-4f6f-b046-d255dbca5f39",
 					"method": "POST",
-					"body": "This is a test",
+					"body": "{x:1}",
 					"timeout": "00:10:00"
 				}
 			}
