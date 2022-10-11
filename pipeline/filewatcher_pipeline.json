@@ -29,7 +29,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "\thttps://webhook.site/273136c5-91a5-4f6f-b046-d255dbca5f39",
+					"url": "https://webhook.site/273136c5-91a5-4f6f-b046-d255dbca5f39",
 					"method": "GET"
 				}
 			}
