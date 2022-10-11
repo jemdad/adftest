@@ -42,6 +42,16 @@
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
+				"variables": {
+					"SourcePath": {
+						"type": "String",
+						"defaultValue": "@triggerBody().folderPath"
+					},
+					"SourceFileName": {
+						"type": "String",
+						"defaultValue": "@triggerBody().FilePathName"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": []
