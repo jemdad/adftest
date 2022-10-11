@@ -14,6 +14,16 @@
 				}
 			}
 		],
+		"variables": {
+			"SourcePath": {
+				"type": "String",
+				"defaultValue": "@triggerBody().folderPath"
+			},
+			"SourceFileName": {
+				"type": "String",
+				"defaultValue": "@triggerBody().fileName"
+			}
+		},
 		"annotations": []
 	}
 }
