@@ -7,6 +7,14 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "jeadf123"
 		},
+		"trigger1_properties_pipeline1_parameters_fn": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
+		"trigger1_properties_pipeline1_parameters_fp": {
+			"type": "string",
+			"defaultValue": "@triggerBody().folderPath"
+		},
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/62abcf9a-5fc5-4cdc-9615-f5eff3b8c1cd/resourceGroups/jevbdppoc/providers/Microsoft.Storage/storageAccounts/jedpstorage"
@@ -94,8 +102,12 @@
 						"userProperties": [],
 						"typeProperties": {
 							"url": "https://webhook.site/273136c5-91a5-4f6f-b046-d255dbca5f39",
-							"method": "GET",
-							"headers": {}
+							"method": "POST",
+							"headers": {},
+							"body": {
+								"value": "@concat(pipeline().parameters.fp,pipeline().parameters.fn)",
+								"type": "Expression"
+							}
 						}
 					},
 					{
@@ -118,6 +130,14 @@
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
+				"parameters": {
+					"fn": {
+						"type": "string"
+					},
+					"fp": {
+						"type": "string"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": []
@@ -135,7 +155,10 @@
 							"referenceName": "pipeline1",
 							"type": "PipelineReference"
 						},
-						"parameters": {}
+						"parameters": {
+							"fn": "[parameters('trigger1_properties_pipeline1_parameters_fn')]",
+							"fp": "[parameters('trigger1_properties_pipeline1_parameters_fp')]"
+						}
 					}
 				],
 				"type": "BlobEventsTrigger",

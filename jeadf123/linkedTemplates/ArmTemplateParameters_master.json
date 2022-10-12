@@ -5,6 +5,12 @@
 		"factoryName": {
 			"value": "jeadf123"
 		},
+		"trigger1_properties_pipeline1_parameters_fn": {
+			"value": "@triggerBody().fileName"
+		},
+		"trigger1_properties_pipeline1_parameters_fp": {
+			"value": "@triggerBody().folderPath"
+		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/62abcf9a-5fc5-4cdc-9615-f5eff3b8c1cd/resourceGroups/jevbdppoc/providers/Microsoft.Storage/storageAccounts/jedpstorage"
 		},

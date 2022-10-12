@@ -7,6 +7,14 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "jeadf123"
 		},
+		"trigger1_properties_pipeline1_parameters_fn": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
+		"trigger1_properties_pipeline1_parameters_fp": {
+			"type": "string",
+			"defaultValue": "@triggerBody().folderPath"
+		},
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/62abcf9a-5fc5-4cdc-9615-f5eff3b8c1cd/resourceGroups/jevbdppoc/providers/Microsoft.Storage/storageAccounts/jedpstorage"
@@ -37,6 +45,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"trigger1_properties_pipeline1_parameters_fn": {
+						"value": "[parameters('trigger1_properties_pipeline1_parameters_fn')]"
+					},
+					"trigger1_properties_pipeline1_parameters_fp": {
+						"value": "[parameters('trigger1_properties_pipeline1_parameters_fp')]"
 					},
 					"trigger1_properties_typeProperties_scope": {
 						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
