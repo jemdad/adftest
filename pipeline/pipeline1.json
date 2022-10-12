@@ -37,6 +37,9 @@
 		"parameters": {
 			"fn": {
 				"type": "string"
+			},
+			"fp": {
+				"type": "string"
 			}
 		},
 		"annotations": []
