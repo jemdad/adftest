@@ -5,7 +5,14 @@
 			{
 				"name": "Web1",
 				"type": "WebActivity",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -18,7 +25,7 @@
 					"url": "https://webhook.site/273136c5-91a5-4f6f-b046-d255dbca5f39",
 					"method": "POST",
 					"body": {
-						"value": "@concat(pipeline().parameters.fp,pipeline().parameters.fn)",
+						"value": "@variables('varfnfilename')",
 						"type": "Expression"
 					}
 				}
@@ -36,6 +43,19 @@
 					},
 					"timeout": "00:10:00"
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "varfnfilename",
+					"value": {
+						"value": "@pipeline().parameters.fn",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -44,6 +64,11 @@
 			},
 			"fp": {
 				"type": "string"
+			}
+		},
+		"variables": {
+			"varfnfilename": {
+				"type": "String"
 			}
 		},
 		"annotations": []
