@@ -91,7 +91,14 @@
 					{
 						"name": "Web1",
 						"type": "WebActivity",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Set variable1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -105,7 +112,7 @@
 							"method": "POST",
 							"headers": {},
 							"body": {
-								"value": "@concat(pipeline().parameters.fp,pipeline().parameters.fn)",
+								"value": "@variables('varfnfilename')",
 								"type": "Expression"
 							}
 						}
@@ -124,6 +131,19 @@
 							},
 							"timeout": "00:10:00"
 						}
+					},
+					{
+						"name": "Set variable1",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "varfnfilename",
+							"value": {
+								"value": "@pipeline().parameters.fn",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"policy": {
@@ -136,6 +156,11 @@
 					},
 					"fp": {
 						"type": "string"
+					}
+				},
+				"variables": {
+					"varfnfilename": {
+						"type": "String"
 					}
 				},
 				"annotations": []
