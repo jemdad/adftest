@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "@triggerBody().folderPath"
 		},
+		"trigger1_properties_pipeline2_parameters_filename": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/62abcf9a-5fc5-4cdc-9615-f5eff3b8c1cd/resourceGroups/jevbdppoc/providers/Microsoft.Storage/storageAccounts/jedpstorage"
@@ -118,21 +122,6 @@
 						}
 					},
 					{
-						"name": "WebHook1",
-						"type": "WebHook",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://webhook.site/273136c5-91a5-4f6f-b046-d255dbca5f39",
-							"method": "POST",
-							"headers": {},
-							"body": {
-								"x": 1
-							},
-							"timeout": "00:10:00"
-						}
-					},
-					{
 						"name": "Set variable1",
 						"type": "SetVariable",
 						"dependsOn": [],
@@ -168,6 +157,84 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Set variable1",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "varfileName",
+							"value": {
+								"value": "@pipeline().parameters.filename",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "If Condition1",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Set variable1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@startsWith(variables('varfileName'),'A')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Web1",
+									"type": "WebActivity",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"url": "https://webhook.site/273136c5-91a5-4f6f-b046-d255dbca5f39",
+										"method": "POST",
+										"headers": {},
+										"body": "Apple"
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"filename": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"varfileName": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/trigger1')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -184,6 +251,15 @@
 							"fn": "[parameters('trigger1_properties_pipeline1_parameters_fn')]",
 							"fp": "[parameters('trigger1_properties_pipeline1_parameters_fp')]"
 						}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "pipeline2",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"filename": "[parameters('trigger1_properties_pipeline2_parameters_filename')]"
+						}
 					}
 				],
 				"type": "BlobEventsTrigger",
@@ -197,7 +273,8 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pipeline1')]"
+				"[concat(variables('factoryId'), '/pipelines/pipeline1')]",
+				"[concat(variables('factoryId'), '/pipelines/pipeline2')]"
 			]
 		}
 	]
