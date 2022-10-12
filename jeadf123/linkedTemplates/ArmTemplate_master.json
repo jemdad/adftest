@@ -11,10 +11,6 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/62abcf9a-5fc5-4cdc-9615-f5eff3b8c1cd/resourceGroups/jevbdppoc/providers/Microsoft.Storage/storageAccounts/jedpstorage"
 		},
-		"trigger2_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/62abcf9a-5fc5-4cdc-9615-f5eff3b8c1cd/resourceGroups/jevbdppoc/providers/Microsoft.Storage/storageAccounts/jedpstorage"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -44,9 +40,6 @@
 					},
 					"trigger1_properties_typeProperties_scope": {
 						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
-					},
-					"trigger2_properties_typeProperties_scope": {
-						"value": "[parameters('trigger2_properties_typeProperties_scope')]"
 					}
 				}
 			},
