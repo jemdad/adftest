@@ -8,7 +8,11 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": ""
+					"variableName": "varfnfilename",
+					"value": {
+						"value": "@pipeline().parameters.fn",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -75,7 +79,30 @@
 					"items": {
 						"value": "@variables('letter')",
 						"type": "Expression"
-					}
+					},
+					"activities": [
+						{
+							"name": "Web2",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://webhook.site/273136c5-91a5-4f6f-b046-d255dbca5f39",
+								"method": "POST",
+								"body": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
 				}
 			}
 		],
