@@ -6,7 +6,10 @@
 				"name": "Set varfn variable1",
 				"type": "SetVariable",
 				"dependsOn": [],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": ""
+				}
 			},
 			{
 				"name": "Web1",
@@ -35,6 +38,45 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set varfn variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "letter",
+					"value": {
+						"value": "@split(variables('varfnfilename'),'.')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('letter')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -44,6 +86,12 @@
 		},
 		"variables": {
 			"varfnfilename": {
+				"type": "String"
+			},
+			"letter": {
+				"type": "Array"
+			},
+			"x": {
 				"type": "String"
 			}
 		},
