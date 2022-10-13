@@ -19,6 +19,10 @@
 			"type": "string",
 			"defaultValue": "@triggerBody().fileName"
 		},
+		"trigger1_properties_pipeline3_parameters_fn": {
+			"type": "string",
+			"defaultValue": "@triggerBody():fileName"
+		},
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/62abcf9a-5fc5-4cdc-9615-f5eff3b8c1cd/resourceGroups/jevbdppoc/providers/Microsoft.Storage/storageAccounts/jedpstorage"
@@ -58,6 +62,9 @@
 					},
 					"trigger1_properties_pipeline2_parameters_filename": {
 						"value": "[parameters('trigger1_properties_pipeline2_parameters_filename')]"
+					},
+					"trigger1_properties_pipeline3_parameters_fn": {
+						"value": "[parameters('trigger1_properties_pipeline3_parameters_fn')]"
 					},
 					"trigger1_properties_typeProperties_scope": {
 						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
