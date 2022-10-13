@@ -7,21 +7,9 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "jeadf123"
 		},
-		"trigger1_properties_pipeline1_parameters_fn": {
-			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
-		},
-		"trigger1_properties_pipeline1_parameters_fp": {
-			"type": "string",
-			"defaultValue": "@triggerBody().folderPath"
-		},
-		"trigger1_properties_pipeline2_parameters_filename": {
-			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
-		},
 		"trigger1_properties_pipeline3_parameters_fn": {
 			"type": "string",
-			"defaultValue": "@triggerBody():fileName"
+			"defaultValue": "@triggerBody().fileName"
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
@@ -53,15 +41,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"trigger1_properties_pipeline1_parameters_fn": {
-						"value": "[parameters('trigger1_properties_pipeline1_parameters_fn')]"
-					},
-					"trigger1_properties_pipeline1_parameters_fp": {
-						"value": "[parameters('trigger1_properties_pipeline1_parameters_fp')]"
-					},
-					"trigger1_properties_pipeline2_parameters_filename": {
-						"value": "[parameters('trigger1_properties_pipeline2_parameters_filename')]"
 					},
 					"trigger1_properties_pipeline3_parameters_fn": {
 						"value": "[parameters('trigger1_properties_pipeline3_parameters_fn')]"
