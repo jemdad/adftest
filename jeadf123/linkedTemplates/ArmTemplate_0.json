@@ -357,9 +357,6 @@
 					},
 					"letter": {
 						"type": "Array"
-					},
-					"x": {
-						"type": "String"
 					}
 				},
 				"annotations": []
