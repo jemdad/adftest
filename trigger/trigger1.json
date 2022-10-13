@@ -22,6 +22,15 @@
 				"parameters": {
 					"filename": "@triggerBody().fileName"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline3",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"fn": "@triggerBody():fileName"
+				}
 			}
 		],
 		"type": "BlobEventsTrigger",
