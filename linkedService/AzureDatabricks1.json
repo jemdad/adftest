@@ -1,0 +1,13 @@
+{
+	"name": "AzureDatabricks1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-5538764959775935.15.azuredatabricks.net",
+			"authentication": "MSI",
+			"workspaceResourceId": "/subscriptions/62abcf9a-5fc5-4cdc-9615-f5eff3b8c1cd/resourceGroups/dataenggsc/providers/Microsoft.Databricks/workspaces/databricksNewLoc",
+			"existingClusterId": "t1-schordia Chordia's Cluster"
+		}
+	}
+}
